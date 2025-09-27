@@ -6,7 +6,18 @@
     display:flex;
     justify-content: center;
     align-items: center;
-    height: 200px;
+    height: 315px;
     border: 1px solid wheat;
     background-color: chocolate;
+}
+.BottomButton{
+    color: azure;
+    text-decoration: none;
+    font-size: 60px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 315px;
+    border: 1px solid wheat;
+    background-color:darkgoldenrod;
 }
