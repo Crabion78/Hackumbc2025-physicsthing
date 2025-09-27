@@ -1,6 +1,9 @@
-button{
-    color:cornflowerblue;
-    font-family:fantasy;
-    font-size: xx-large;
-    fill: cornflowerblue;
+
+.CenteredButton{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    border: 1px solid wheat;
+    background-color: chocolate;
 }
