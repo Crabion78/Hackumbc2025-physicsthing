@@ -1,4 +1,46 @@
 <!DOCTYPE html>
 <html>
-    
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script>
+
+    </script>
+    <head>
+        <link rel="stylesheet" href="physics.css">
+        <h1 style="text-align: center;"><u>Waves</u></h1>
+    </head>
+    <body>
+        <label for="wavelengthtxt">Wavelength:</label>
+        <input type="text" id="wavelengthtxt" style="width: 10px;">
+        <label for="wavelengthtxt">π</label>
+        <div id="Wave" style="width:100%;max-width:700px" class="wave"></div>
+        <script>
+            let wvlngth = 2*Math.PI
+            document.getElementById("wavelengthtxt").value = wvlngth/Math.PI
+           let eq = "Math.sin(2*Math.PI*x/wvlngth)";
+            let xValues = [];
+            let yValues = [];
+            for (let x = 0; x <=4*Math.PI; x+=0.01)
+            {
+                xValues.push(x);
+                yValues.push(eval(eq));
+            }
+            const data = [{x:xValues, y:yValues, mode:"lines"}]
+            Plotly.newPlot("Wave", data, );
+            function updateWavelength(){
+                wvlngth = Number(document.getElementById("wavelengthtxt").value) * Math.PI
+                for (let x = 0; x< yValues.length; x+=1)
+                {
+                    yValues[x] = Math.sin(2*Math.PI*x/(100*wvlngth));
+                } 
+            }
+            document.getElementById("wavelengthtxt").addEventListener("input", updateWavelength);
+            function animate() {
+                yValues.unshift(yValues[yValues.length-1]);
+                yValues.pop();
+                Plotly.animate("Wave", {data: [{y:yValues}], traces: [0], layout: {}}, {frame: {duration: 2}});
+                requestAnimationFrame(animate);
+            }
+            requestAnimationFrame(animate);
+        </script>
+    </body>
 </html>
