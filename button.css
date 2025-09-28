@@ -1,5 +1,10 @@
 
 .CenteredButton{
+    transform: translate(5px);
+    transition: transform 1s ease;
+    animation-name: CenteredButton;
+    animation-direction: 5ms;
+    animation-delay: 1ms;
     color: azure;
     text-decoration: none;
     font-size: 60px;
@@ -9,8 +14,14 @@
     height: 315px;
     border: 1px solid wheat;
     background-color: chocolate;
+    
 }
 .BottomButton{
+    transform: translate(5px);
+    transition: transform 1s ease;
+    animation-name: BottomButton;
+    animation-direction: 5ms;
+    animation-delay: 1ms;
     color: azure;
     text-decoration: none;
     font-size: 60px;
@@ -20,4 +31,6 @@
     height: 315px;
     border: 1px solid wheat;
     background-color:darkgoldenrod;
+    
+    
 }
