@@ -1,16 +1,52 @@
 <!DOCTYPE html>
 <html>
+    
     <head>
-        <style>
-            .ball{
-                border-radius: 50%;
-                width: 50px;
-                height: 50px;
-                background-color: darkslategray;
-            }
-        </style>
+        
     </head>
-    <body>
-        <div id="Ball" class="ball" draggable="true"></div>
+    <body onmousemove="coordinate(event)" onmousedown="fmouseclick()" onmouseup="mouseunclick()">
+
+        <h1 style="text-align: center;"><u>Kinematics</u></h1>
+        
+        <canvas id="dragball"width = 800 height = 300 style="border:6px solid black; margin: auto; display: block" ></canvas>
+        
+
+        <script>
+            var mouseclick=0
+            var velocity=1
+            function coordinate(event){
+                if (mouseclick ==1) {
+                    let x = event.clientX;
+                    document.getElementById("X")
+                    var c=document.getElementById("dragball")
+                    var ctx = c.getContext("2d");
+                    ctx.clearRect(0,0,800,300)
+                    ctx.beginPath();
+                    ctx.arc(x-365,150,30,0,2*Math.PI) 
+                    ctx.fill();
+                    console.log("drag")
+                }
+
+            }
+            function mouseunclick(){
+                mouseclick = 0
+                console.log("drop")
+
+                
+            }
+            function fmouseclick(){
+                mouseclick=1
+                 let x = event.clientX;
+                document.getElementById("X")
+                var c=document.getElementById("dragball")
+                var ctx = c.getContext("2d");
+                ctx.clearRect(0,0,800,300)
+                ctx.beginPath();
+                ctx.arc(x-365,150,30,0,2*Math.PI) 
+                ctx.fill();
+                console.log("pickup")
+            }
+
+        </script>
     </body>
 </html>
