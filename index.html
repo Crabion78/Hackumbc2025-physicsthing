@@ -1,16 +1,53 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title> Physics website</title>
-        <link rel="stylesheet" href="button.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <a href="physics.html" class="CenteredButton"> 
+<html lang="en">
+<head>
+    <title> Physics website</title>  
+    <link rel="stylesheet" href="button.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Physics</title>
+  <style>
+    .CenteredButton {
+      color: azure;
+      text-decoration: none;
+      font-size: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 315px;
+      border: 1px solid wheat;
+      background-color: chocolate;
+      transition: transform 0.5s ease; /* smooth animation */
+    }
+
+    .CenteredButton:hover {
+      transform: translateY(-10px);
+    }
+
+    .BottomButton {
+      color: azure;
+      text-decoration: none;
+      font-size: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 315px;
+      border: 1px solid wheat;
+      background-color: darkgoldenrod;
+      transition: transform 0.5s ease;
+    }
+
+    .BottomButton:hover {
+      transform: translateY(10px);
+    }
+  </style>
+</head>
+<body>
+    <a href="physics.html" class="CenteredButton"> 
             Physics
         </a>
         <a href="math.html" class="BottomButton">
             Math
         </a>
-    </body>
+</body>
 </html>
