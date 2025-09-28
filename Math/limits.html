@@ -38,23 +38,7 @@
     const curved = Math.pow(normalized, power);
     return minVal + (maxVal - minVal) * curved;
   }
-
-  function updateDisplay() {
-    let x = getActualValue();
-    let displayX;
-
-    // When the slider is at its max value, display "≈"
-    if (slider.value == slider.max) {
-      displayX = "≈";
-      valueDisplay.textContent = displayX;
-    } else {
-      displayX = x.toFixed(4);
-      valueDisplay.textContent = displayX;
-    }
-
-    updateFx(x, displayX);
-  }
-
+  
   function updateFx(x, displayX) {
     const selected = dropdown.value;
     let fx;
@@ -69,9 +53,29 @@
     }
 
     // Display with limit notation
-    fxDisplay.textContent = `lim(x → 2-) f(${displayX}) ≈ ${fx.toFixed(4)}`;
-
+    if (slider.value==slider.max){
+      fxDisplay.textContent = `lim x->2- f(${displayX}) ≈ ${fx.toFixed(4)}`;
+    }
+    else{
+      fxDisplay.textContent = `f(${displayX}) ≈ ${fx.toFixed(4)}`;
+    }
     
+    
+  }
+function updateDisplay() {
+    let x = getActualValue();
+    let displayX;
+
+    // When the slider is at its max value, display "≈"
+    if (slider.value == slider.max) {
+      displayX = "x";
+      valueDisplay.textContent = "2.0000";
+    } else {
+      displayX = x.toFixed(4);
+      valueDisplay.textContent = displayX;
+    }
+
+    updateFx(x, displayX);
   }
 
   // Initialize the display when the page loads
