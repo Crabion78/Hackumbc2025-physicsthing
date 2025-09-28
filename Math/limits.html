@@ -14,15 +14,15 @@
     <label style="float: right;" for="logSlider">Logarithmic Slider:</label>
 </div>
 
-<select name="Equations" id="eq">
+<select name="Equations" id="eq" style="font-size: 20px;">
     <option value="linear" selected>f(x) = x</option>
     <option value="quad">f(x) = x^2</option>
     <option value="cubic">f(x) = x^3</option>
 </select>
 
-<p id="fx"></p>
+<p id="fx" style="font-size: 25px;margin-top: 100px;"></p>
 
-<p id="limitExplanation"></p>
+<p id="limitExplanation" style="font-size: 20px;"></p>
 <script>
   const slider = document.getElementById('logSlider');
   const valueDisplay = document.getElementById('value');
@@ -55,7 +55,7 @@
     // Display with limit notation
     if (slider.value==slider.max){
       fxDisplay.textContent = `lim (x->2-) f(${displayX}) ≈ ${fx.toFixed(4)}`;
-       document.getElementById("limitExplanation").textContent = "'-' is to indicate that 2 is being approached from a lower value";
+       document.getElementById("limitExplanation").textContent = "'-' is to indicate that 2 is being approached from below (a lower value)";
     }
     else{
       fxDisplay.textContent = `f(${displayX}) = ${fx.toFixed(4)}`;
@@ -71,7 +71,7 @@ function updateDisplay() {
     // When the slider is at its max value, display "≈"
     if (slider.value == slider.max) {
       displayX = "x";
-      valueDisplay.textContent = "2.0000";
+      valueDisplay.textContent = "~2.0000";
     } else {
       displayX = x.toFixed(4);
       valueDisplay.textContent = displayX;
