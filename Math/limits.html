@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<head>
+    <link rel="stylesheet" href="mathtext.css">
+</head>
+<body>
+    <h1 style="text-align: center;"><u>Limits</u></h1>
+    <p style="text-align: center;">Describes the value a function approaches as its input gets arbitrarily close to a particular value, even if the function is undefined at that exact point.</p>
+    
+<label for="logSlider">Logarithmic Slider:</label><br>
+  <input type="range" id="logSlider" min="0" max="100" step="1">
+  <span id="value"></span>
+
+  <script>
+    const slider = document.getElementById('logSlider');
+    const valueDisplay = document.getElementById('value');
+
+    const minVal = 1;
+    const maxVal = 2;
+    const power = 0.05; // controls compression; try 3, 4, or higher
+
+    function updateDisplay() {
+      const sliderVal = parseFloat(slider.value);
+      // Linear to nonlinear power mapping (more detail near 1)
+      const normalized = sliderVal / 100;
+      const curved = Math.pow(normalized, power);
+      const actualValue = minVal + (maxVal - minVal) * curved;
+      valueDisplay.textContent = actualValue.toFixed(4);
+    }
+
+    // Initial value
+    updateDisplay();
+
+    // Update on input
+    slider.addEventListener('input', updateDisplay);
+  </script>
+
+
+</body>
+</html>
