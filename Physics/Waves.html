@@ -2,7 +2,6 @@
 <html>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script>
-
     </script>
     <head>
         <link rel="stylesheet" href="physics.css">
@@ -11,11 +10,14 @@
     <body>
         <label for="wavelengthtxt">Wavelength:</label>
         <input type="text" id="wavelengthtxt" style="width: 10px;">
-        <label for="wavelengthtxt">π</label>
+        <label for="wavelengthtxt">π</label> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b id="frequency"></b>
+        
         <div id="Wave" style="width:100%;max-width:700px" class="wave"></div>
         <script>
             let wvlngth = 2*Math.PI
             document.getElementById("wavelengthtxt").value = wvlngth/Math.PI
+            let freq = 190.8
+            document.getElementById("frequency").textContent = "Frequency: " + freq/Number(document.getElementById("wavelengthtxt").value) + " mHz"
            let eq = "Math.sin(2*Math.PI*x/wvlngth)";
             let xValues = [];
             let yValues = [];
@@ -28,6 +30,7 @@
             Plotly.newPlot("Wave", data, );
             function updateWavelength(){
                 wvlngth = Number(document.getElementById("wavelengthtxt").value) * Math.PI
+                document.getElementById("frequency").textContent = "Frequency: " + Math.round(freq/Number(document.getElementById("wavelengthtxt").value)) + " mHz"
                 for (let x = 0; x< yValues.length; x+=1)
                 {
                     yValues[x] = Math.sin(2*Math.PI*x/(100*wvlngth));
