@@ -14,20 +14,20 @@
     <label style="float: right;" for="logSlider">Logarithmic Slider:</label>
 </div>
 
-<p id="fx"></p>
-
 <select name="Equations" id="eq">
     <option value="linear" selected>f(x) = x</option>
     <option value="quad">f(x) = x^2</option>
     <option value="cubic">f(x) = x^3</option>
 </select>
 
+<p id="fx"></p>
+
+<p id="limitExplanation"></p>
 <script>
   const slider = document.getElementById('logSlider');
   const valueDisplay = document.getElementById('value');
   const fxDisplay = document.getElementById('fx');
   const dropdown = document.getElementById('eq');
-
   const minVal = 1;
   const maxVal = 2;
   const power = 0.07;
@@ -54,10 +54,12 @@
 
     // Display with limit notation
     if (slider.value==slider.max){
-      fxDisplay.textContent = `lim x->2- f(${displayX}) ≈ ${fx.toFixed(4)}`;
+      fxDisplay.textContent = `lim (x->2-) f(${displayX}) ≈ ${fx.toFixed(4)}`;
+       document.getElementById("limitExplanation").textContent = "'-' is to indicate that 2 is being approached from a lower value";
     }
     else{
-      fxDisplay.textContent = `f(${displayX}) ≈ ${fx.toFixed(4)}`;
+      fxDisplay.textContent = `f(${displayX}) = ${fx.toFixed(4)}`;
+       document.getElementById("limitExplanation").textContent = "";
     }
     
     
@@ -89,7 +91,7 @@ function updateDisplay() {
     updateFx(x, displayX);
   });
 </script>
-<p>"-" is to indicate that 2 is being approached from a lower value</p>
+
 
 </body>
 </html>
