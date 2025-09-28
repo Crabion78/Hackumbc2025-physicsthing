@@ -8,34 +8,84 @@
     <h1 style="text-align: center;"><u>Limits</u></h1>
     <p style="text-align: center;">Describes the value a function approaches as its input gets arbitrarily close to a particular value, even if the function is undefined at that exact point.</p>
     
-<label for="logSlider">Logarithmic Slider:</label><br>
-  <input type="range" id="logSlider" min="0" max="100" step="1">
-  <span id="value"></span>
+<div class="LogSlider">
+    <span style="float: right;" id="value"></span>
+    <input type="range" id="logSlider" min="0" max="100" value="0" step="1">
+    <label style="float: right;" for="logSlider">Logarithmic Slider:</label>
+</div>
 
-  <script>
-    const slider = document.getElementById('logSlider');
-    const valueDisplay = document.getElementById('value');
+<p id="fx"></p>
 
-    const minVal = 1;
-    const maxVal = 2;
-    const power = 0.05; // controls compression; try 3, 4, or higher
+<select name="Equations" id="eq">
+    <option value="linear" selected>f(x) = x</option>
+    <option value="quad">f(x) = x^2</option>
+    <option value="cubic">f(x) = x^3</option>
+</select>
 
-    function updateDisplay() {
-      const sliderVal = parseFloat(slider.value);
-      // Linear to nonlinear power mapping (more detail near 1)
-      const normalized = sliderVal / 100;
-      const curved = Math.pow(normalized, power);
-      const actualValue = minVal + (maxVal - minVal) * curved;
-      valueDisplay.textContent = actualValue.toFixed(4);
+<script>
+  const slider = document.getElementById('logSlider');
+  const valueDisplay = document.getElementById('value');
+  const fxDisplay = document.getElementById('fx');
+  const dropdown = document.getElementById('eq');
+
+  const minVal = 1;
+  const maxVal = 2;
+  const power = 0.07;
+
+  function getActualValue() {
+    const sliderVal = parseFloat(slider.value);
+    const normalized = sliderVal / 100;
+    const curved = Math.pow(normalized, power);
+    return minVal + (maxVal - minVal) * curved;
+  }
+
+  function updateDisplay() {
+    let x = getActualValue();
+    let displayX;
+
+    // When the slider is at its max value, display "≈"
+    if (slider.value == slider.max) {
+      displayX = "≈";
+      valueDisplay.textContent = displayX;
+    } else {
+      displayX = x.toFixed(4);
+      valueDisplay.textContent = displayX;
     }
 
-    // Initial value
-    updateDisplay();
+    updateFx(x, displayX);
+  }
 
-    // Update on input
-    slider.addEventListener('input', updateDisplay);
-  </script>
+  function updateFx(x, displayX) {
+    const selected = dropdown.value;
+    let fx;
 
+    // Perform the function calculation
+    if (selected === "linear") {
+      fx = x;
+    } else if (selected === "quad") {
+      fx = x * x;
+    } else if (selected === "cubic") {
+      fx = x * x * x;
+    }
+
+    // Display with limit notation
+    fxDisplay.textContent = `lim(x → 2-) f(${displayX}) ≈ ${fx.toFixed(4)}`;
+
+    
+  }
+
+  // Initialize the display when the page loads
+  updateDisplay();
+
+  // Add event listeners for slider and dropdown changes
+  slider.addEventListener('input', updateDisplay);
+  dropdown.addEventListener('change', () => {
+    const x = getActualValue();
+    const displayX = slider.value == slider.max ? "2" : x.toFixed(4);
+    updateFx(x, displayX);
+  });
+</script>
+<p>"-" is to indicate that 2 is being approached from a lower value</p>
 
 </body>
 </html>
